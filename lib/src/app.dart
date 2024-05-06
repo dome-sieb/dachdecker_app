@@ -1,4 +1,3 @@
-import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/data/mock_database.dart';
 import 'package:dachdecker_app/src/features/authentification/presentation/loginscreen.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
@@ -9,13 +8,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DatabaseRepository databaseRepository = MockDatabase();
+    MockDatabase databaseRepository = MockDatabase();
+    databaseRepository.init();
 
     return MaterialApp(
       theme: FlexThemeData.light(scheme: FlexScheme.blueWhale),
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.blueWhale),
       themeMode: ThemeMode.light,
-      home: 'LoginScreen'(
+      home: LoginScreen(
         databaseRepository: databaseRepository,
       ),
     );

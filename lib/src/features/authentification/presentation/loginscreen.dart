@@ -1,19 +1,21 @@
 import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/features/overview/presentation/overview_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'sign_up_screen.dart';
 
-class Loginscreen extends StatefulWidget {
-  final WorkerRepository databaseRepository;
+class LoginScreen extends StatefulWidget {
+  final DatabaseRepository databaseRepository;
 
-  const Loginscreen({super.key, required this.databaseRepository});
+  const LoginScreen({
+    super.key,
+    required this.databaseRepository,
+  });
 
   @override
-  State<Loginscreen> createState() => _LoginscreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginscreenState extends State<Loginscreen> {
+class _LoginScreenState extends State<LoginScreen> {
   bool showPassword = false;
 
   @override
@@ -28,7 +30,7 @@ class _LoginscreenState extends State<Loginscreen> {
           child: Form(
             child: Column(
               children: [
-                Center(child: Image.asset('background.png')),
+                Center(child: Image.asset('assets/images/background.png')),
                 const SizedBox(height: 40),
                 TextFormField(
                   decoration: const InputDecoration(
@@ -77,11 +79,11 @@ class _LoginscreenState extends State<Loginscreen> {
                 const SizedBox(height: 32),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignUpScreen(
-                            WorkerRepository databaseRepository,                            
+                            databaseRepository: widget.databaseRepository,
                           ),
                         ));
                   },

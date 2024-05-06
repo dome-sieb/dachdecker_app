@@ -17,6 +17,4 @@ class Worker {
   String position;
 
   Worker(this.id, this.name, this.position);
-
-  get salary => null;
 }
