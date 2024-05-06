@@ -20,7 +20,7 @@ class OverviewScreen extends StatelessWidget {
         return ListTile(
           title: Text(worker[index].name),
           subtitle: Text(worker[index].position),
-          trailing: Text(worker[index].salary.toString());
+          trailing: Text(worker[index].salary.toString()));
         }
       );
     }

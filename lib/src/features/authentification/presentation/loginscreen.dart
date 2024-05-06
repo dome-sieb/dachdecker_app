@@ -81,7 +81,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignUpScreen(
-                            databaseRepository: widget.databaseRepository,
+                            WorkerRepository databaseRepository,                            
                           ),
                         ));
                   },

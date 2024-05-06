@@ -15,8 +15,8 @@ import 'package:dachdecker_app/src/domain/worker.dart';
 
 class WorkerRepository {
   static List<Worker> workers = [
-    Worker('1', 'Dominique', 'Dachdecker'),
-    Worker('2', 'Tom', 'Meister'),
+    Worker('w1', 'Dominique', 'Dachdecker'),
+    Worker('w2', 'Tom', 'Meister'),
   ];
 
   static List<Worker> getAllWorkers() {
