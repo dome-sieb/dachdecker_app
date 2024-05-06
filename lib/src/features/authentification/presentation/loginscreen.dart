@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:dachdecker_app/src/data/database_repository.dart';
-import 'package:dachdecker_app/src/features/authentification/presentation/sign_up_screen.dart';
 import 'package:dachdecker_app/src/features/overview/presentation/overview_screen.dart';
+import 'package:flutter/material.dart';
+
+import 'sign_up_screen.dart';
 
 class Loginscreen extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
+  final WorkerRepository databaseRepository;
 
   const Loginscreen({super.key, required this.databaseRepository});
 
@@ -13,7 +14,6 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
-
   bool showPassword = false;
 
   @override
@@ -21,29 +21,29 @@ class _LoginscreenState extends State<Loginscreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
-        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Form(
-            child: const Column(
+            child: Column(
               children: [
-                Center(child:Image.asset(assets/images/background.png)),
-               SizedBox(height: 40),
-               TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Email",
-                  icon: Icon(Icons.email),
+                Center(child: Image.asset('background.png')),
+                const SizedBox(height: 40),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Email",
+                    icon: Icon(Icons.email),
+                  ),
                 ),
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                obscureText: !showPassword,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
+                const SizedBox(height: 16),
+                TextFormField(
+                  obscureText: !showPassword,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
                     labelText: "Passwort",
-                    icon: Icon(Icons.password),
+                    icon: const Icon(Icons.password),
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -51,16 +51,47 @@ class _LoginscreenState extends State<Loginscreen> {
                         });
                       },
                       icon: showPassword
-                      ? Icon(Icons.visibility)
-                      : Icon(Icons.visibility_off),
+                          ? const Icon(Icons.visibility)
+                          : const Icon(Icons.visibility_off),
                     ),
                   ),
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
-                    //TODO: login logik einbauen
-                  }
-                
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OverviewScreen(
+                            databaseRepository: widget.databaseRepository,
+                          ),
+                        ));
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Login"),
+                  ),
+                ),
+                const SizedBox(height: 32),
+                const Divider(),
+                const SizedBox(height: 32),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpScreen(
+                            databaseRepository: widget.databaseRepository,
+                          ),
+                        ));
+                  },
+                  child: const Text("Noch keinen Account? Zur Registrierung"),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
-  }
+}

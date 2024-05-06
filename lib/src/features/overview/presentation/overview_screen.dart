@@ -8,7 +8,7 @@ class OverviewScreen extends StatelessWidget {
   const OverviewScreen({super.key, required this.databaseRepository});
   @override
   Widget build(BuildContext context) {
-    List<Worker> worker = databaseRepository.listWorker();
+    List<Worker> worker = databaseRepository;
     if (worker.isEmpty) {
       return const Center(
         child: Text('No workers'),
