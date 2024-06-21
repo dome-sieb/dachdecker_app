@@ -1,7 +1,6 @@
 import 'package:dachdecker_app/src/domain/buildingsite.dart';
 import 'package:flutter/material.dart';
 import 'package:dachdecker_app/src/data/database_repository.dart';
-import 'package:dachdecker_app/src/data/mock_database.dart';
 
 class Buildingsites extends StatelessWidget {
   final DatabaseRepository databaseRepository;
@@ -9,7 +8,7 @@ class Buildingsites extends StatelessWidget {
   const Buildingsites({super.key, required this.databaseRepository});
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Buildingsite>?>(
+    return FutureBuilder<List<Buildingsite>>(
       future: databaseRepository.getBuildingsite(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

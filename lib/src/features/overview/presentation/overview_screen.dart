@@ -1,7 +1,6 @@
 import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/domain/worker.dart';
 import 'package:flutter/material.dart';
-import 'package:dachdecker_app/src/features/buildingsites/presentation/';
 
 class OverviewScreen extends StatelessWidget {
   final DatabaseRepository databaseRepository;

@@ -1,4 +1,5 @@
 import 'package:dachdecker_app/src/data/database_repository.dart';
+import 'package:dachdecker_app/src/features/authentification/presentation/welcom_screen.dart';
 import 'package:dachdecker_app/src/features/overview/presentation/overview_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -65,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OverviewScreen(
+                          builder: (context) => WelcomeScreen(
                             databaseRepository: widget.databaseRepository,
                           ),
                         ));

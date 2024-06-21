@@ -1,5 +1,6 @@
 import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/features/authentification/presentation/loginscreen.dart';
+import 'package:dachdecker_app/src/features/authentification/presentation/welcom_screen.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -79,9 +80,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
-                    //TODO: registrieungslogik einbauen
-                    // nach der registrierung
-                    //navigiere zur übersichtsseite
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WelcomeScreen(
+                            databaseRepository: widget.databaseRepository,
+                          ),
+                        ));
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
