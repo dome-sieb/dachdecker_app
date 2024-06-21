@@ -1,6 +1,7 @@
 import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/features/overview/presentation/overview_screen.dart';
 import 'package:flutter/material.dart';
+
 import 'sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -22,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text("Herzlich Willkommen"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -31,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               children: [
                 Center(child: Image.asset('assets/images/background.png')),
-                const SizedBox(height: 40),
+                const SizedBox(height: 20),
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -61,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => OverviewScreen(

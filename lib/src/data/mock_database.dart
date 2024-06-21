@@ -3,7 +3,7 @@ import 'package:dachdecker_app/src/domain/buildingsite.dart';
 import 'package:dachdecker_app/src/domain/task.dart';
 import 'package:dachdecker_app/src/domain/worker.dart';
 
-class MockDatabase extends DatabaseRepository {
+class MockDatabase implements DatabaseRepository {
   List<Worker> workers = [];
   Buildingsite? buildingsite;
 
@@ -26,47 +26,56 @@ class MockDatabase extends DatabaseRepository {
   }
 
   @override
-  void addTask(Task task) {
+  Future<void> addTask(Task task) async {
+    await Future.delayed(const Duration(seconds: 3));
     buildingsite?.task.add(task);
   }
 
   @override
-  void addWorker(Worker worker) {
+  Future<void> addWorker(Worker worker) async {
+    await Future.delayed(const Duration(seconds: 3));
     buildingsite?.worker.add(worker);
   }
 
   @override
-  List<String>? getMessages() {
+  Future<List<String>?> getMessages() async {
+    await Future.delayed(const Duration(seconds: 3));
     return buildingsite?.messages;
   }
 
   @override
-  void removeTask(Task task) {
+  Future<void> removeTask(Task task) async {
+    await Future.delayed(const Duration(seconds: 3));
     buildingsite?.task.remove(task);
   }
 
   @override
-  void removeWorker(Worker worker) {
+  Future<void> removeWorker(Worker worker) async {
+    await Future.delayed(const Duration(seconds: 3));
     buildingsite?.worker.remove(worker);
   }
 
   @override
-  void sendMessages(String message) {
+  Future<void> sendMessages(String message) async {
+    await Future.delayed(const Duration(seconds: 3));
     buildingsite?.messages.add(message);
   }
 
   @override
-  Buildingsite? getBuildingsite() {
+  Future<Buildingsite?> getBuildingsite() async {
+    await Future.delayed(const Duration(seconds: 3));
     return buildingsite;
   }
 
   @override
-  List<Task>? getTasks() {
+  Future<List<Task>?> getTasks() async {
+    await Future.delayed(const Duration(seconds: 3));
     return buildingsite?.task;
   }
 
   @override
-  List<Worker>? getWorkers() {
+  Future<List<Worker>?> getWorkers() async {
+    await Future.delayed(const Duration(seconds: 3));
     return buildingsite?.worker;
   }
 }

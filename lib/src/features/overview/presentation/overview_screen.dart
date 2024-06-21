@@ -24,6 +24,7 @@ class OverviewScreen extends StatelessWidget {
             title: Text(databaseRepository.getWorkers()![index].name),
             subtitle: Text(databaseRepository.getWorkers()![index].position),
 
+
             /*  trailing: Text(
               databaseRepository.getWorkers()![index].salary.toString(),
             ),*/
@@ -33,3 +34,4 @@ class OverviewScreen extends StatelessWidget {
     );
   }
 }                //    
+
