@@ -1,16 +1,16 @@
-import 'package:dachdecker_app/src/data/database_repository.dart';
-import 'package:dachdecker_app/src/domain/worker.dart';
+import 'package:dachdecker_app/src/domain/buildingsite.dart';
 import 'package:flutter/material.dart';
-import 'package:dachdecker_app/src/features/buildingsites/presentation/';
+import 'package:dachdecker_app/src/data/database_repository.dart';
+import 'package:dachdecker_app/src/data/mock_database.dart';
 
-class OverviewScreen extends StatelessWidget {
+class Buildingsites extends StatelessWidget {
   final DatabaseRepository databaseRepository;
 
-  const OverviewScreen({super.key, required this.databaseRepository});
+  const Buildingsites({super.key, required this.databaseRepository});
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Worker>?>(
-      future: databaseRepository.getWorkers(),
+    return FutureBuilder<List<Buildingsite>?>(
+      future: databaseRepository.getBuildingsite(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -22,12 +22,12 @@ class OverviewScreen extends StatelessWidget {
           );
         } else if (snapshot.data!.isEmpty) {
           return const Center(
-            child: Text('No workers'),
+            child: Text('No Buildingsites'),
           );
         } else {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Worker'),
+              title: const Text('Buidlingsites'),
               backgroundColor: Colors.red[400],
             ),
             body: ListView.builder(
@@ -35,7 +35,7 @@ class OverviewScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(snapshot.data![index].name),
-                  subtitle: Text(snapshot.data![index].position),
+                  subtitle: Text(snapshot.data![index].address),
                 );
               },
             ),
