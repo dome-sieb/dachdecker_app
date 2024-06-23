@@ -18,8 +18,17 @@ class WelcomeScreen extends StatelessWidget {
           child: Form(
             child: Column(
               children: [
-                Center(child: Image.asset('assets/images/background.png')),
-                const SizedBox(height: 32),
+                widget(
+                  children: [
+                    Center(child: Image.asset('assets/images/background.png')),
+                    const SizedBox(height: 32),
+                    TextFormField(
+                      textAlign: TextAlign.center,
+                      initialValue: 'worker${databaseRepository.toString()}',
+                    ),
+                    Text(databaseRepository.toString()),
+                  ],
+                ),
               ],
             ),
           ),
@@ -27,4 +36,6 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
+
+  widget({required List<Widget> children}) {}
 }

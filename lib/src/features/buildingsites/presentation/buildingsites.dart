@@ -8,8 +8,10 @@ class Buildingsites extends StatelessWidget {
   const Buildingsites({super.key, required this.databaseRepository});
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Buildingsite>>(
-      future: databaseRepository.getBuildingsite(),
+    return FutureBuilder<List<Buildingsite>?>(
+      future: databaseRepository
+          .getBuildingsite(super.key)
+          .then((value) => [value!]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(

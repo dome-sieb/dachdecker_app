@@ -1,6 +1,7 @@
 import 'package:dachdecker_app/src/domain/buildingsite.dart';
 import 'package:dachdecker_app/src/domain/task.dart';
 import 'package:dachdecker_app/src/domain/worker.dart';
+import 'package:flutter/src/foundation/key.dart';
 
 abstract class DatabaseRepository {
   void sendMessages(String message);
@@ -11,5 +12,5 @@ abstract class DatabaseRepository {
   void removeTask(Task task);
   Future<List<Worker>?> getWorkers();
   Future<List<Task>?> getTasks();
-  Future<Buildingsite?> getBuildingsite();
+  Future<Buildingsite?> getBuildingsite(Key? key);
 }

@@ -1,6 +1,6 @@
 import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/features/authentification/presentation/welcom_screen.dart';
-import 'package:dachdecker_app/src/features/overview/presentation/overview_screen.dart';
+//import 'package:dachdecker_app/src/features/overview/presentation/overview_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'sign_up_screen.dart';
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => WelcomeScreen(

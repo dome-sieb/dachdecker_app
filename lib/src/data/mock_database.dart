@@ -2,6 +2,7 @@ import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/domain/buildingsite.dart';
 import 'package:dachdecker_app/src/domain/task.dart';
 import 'package:dachdecker_app/src/domain/worker.dart';
+import 'package:flutter/material.dart';
 
 class MockDatabase implements DatabaseRepository {
   List<Worker> workers = [];
@@ -62,7 +63,7 @@ class MockDatabase implements DatabaseRepository {
   }
 
   @override
-  Future<Buildingsite?> getBuildingsite() async {
+  Future<Buildingsite?> getBuildingsite(Key? key) async {
     await Future.delayed(const Duration(seconds: 3));
     return buildingsite;
   }
