@@ -8,7 +8,7 @@ class MockDatabase implements DatabaseRepository {
   List<Worker> workers = [];
   Buildingsite? buildingsite;
 
-  void init() {
+  Future<void> init() async {
     workers = [Worker('1', 'Dome', 'Dachdecker'), Worker('2', 'Tom', 'Azubi')];
     buildingsite = Buildingsite(
       'test',
@@ -79,4 +79,12 @@ class MockDatabase implements DatabaseRepository {
     await Future.delayed(const Duration(seconds: 3));
     return buildingsite?.worker;
   }
+
+  @override
+  Future<void> showWorker(Worker worker) async {
+    await Future.delayed(const Duration(seconds: 3));
+    show(worker);
+  }
+
+  void show(Worker worker) {}
 }

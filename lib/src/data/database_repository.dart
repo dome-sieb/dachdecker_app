@@ -10,7 +10,10 @@ abstract class DatabaseRepository {
   void removeWorker(Worker worker);
   void addTask(Task task);
   void removeTask(Task task);
+  void showWorker(Worker worker);
   Future<List<Worker>?> getWorkers();
   Future<List<Task>?> getTasks();
   Future<Buildingsite?> getBuildingsite(Key? key);
+
+  void init() {}
 }

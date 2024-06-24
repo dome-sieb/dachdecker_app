@@ -1,5 +1,7 @@
 import 'package:dachdecker_app/src/data/database_repository.dart';
+import 'package:dachdecker_app/src/features/overview/presentation/overview_screen.dart';
 import 'package:flutter/material.dart';
+//import 'package:flutter_icons/flutter_icons.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final DatabaseRepository databaseRepository;
@@ -10,6 +12,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        primary: false,
         title: const Text('Willkommen'),
       ),
       body: SingleChildScrollView(
@@ -18,15 +21,33 @@ class WelcomeScreen extends StatelessWidget {
           child: Form(
             child: Column(
               children: [
-                widget(
+                Column(
                   children: [
                     Center(child: Image.asset('assets/images/background.png')),
                     const SizedBox(height: 32),
-                    TextFormField(
-                      textAlign: TextAlign.center,
-                      initialValue: 'worker${databaseRepository.toString()}',
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OverviewScreen(
+                              databaseRepository: databaseRepository,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.blueAccent[400],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          'Willkommen in meiner App!',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
                     ),
-                    Text(databaseRepository.toString()),
                   ],
                 ),
               ],
@@ -36,6 +57,4 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  widget({required List<Widget> children}) {}
 }
