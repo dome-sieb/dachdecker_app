@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "85316744814",
+    "project_id": "dachdecker-app-v999kq",
+    "storage_bucket": "dachdecker-app-v999kq.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85316744814:android:0ea06cc5146c8abf14d87f",
+        "android_client_info": {
+          "package_name": "com.example.dachdecker_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhKWEjqOAid-DvaKu8J3HKR1l_eMW4YJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
