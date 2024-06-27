@@ -8,6 +8,7 @@ class MockDatabase implements DatabaseRepository {
   List<Worker> workers = [];
   Buildingsite? buildingsite;
 
+  @override
   Future<void> init() async {
     workers = [Worker('1', 'Dome', 'Dachdecker'), Worker('2', 'Tom', 'Azubi')];
     buildingsite = Buildingsite(
