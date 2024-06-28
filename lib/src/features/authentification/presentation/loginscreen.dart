@@ -1,9 +1,10 @@
+import 'package:dachdecker_app/src/data/auth_repository.dart';
 import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/features/authentification/presentation/welcom_screen.dart';
 //import 'package:dachdecker_app/src/features/overview/presentation/overview_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'sign_up_screen.dart';
+import 'signupscreen.dart';
 
 class LoginScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
@@ -11,6 +12,7 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({
     super.key,
     required this.databaseRepository,
+    required AuthRepository authRepository,
   });
 
   @override

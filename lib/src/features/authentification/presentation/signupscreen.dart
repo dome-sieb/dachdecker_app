@@ -1,3 +1,4 @@
+import 'package:dachdecker_app/src/data/auth_repository.dart';
 import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/features/authentification/presentation/loginscreen.dart';
 import 'package:dachdecker_app/src/features/authentification/presentation/welcom_screen.dart';
@@ -5,10 +6,12 @@ import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
+  final AuthRepository authRepository;
 
   const SignUpScreen({
     super.key,
     required this.databaseRepository,
+    required this.authRepository,
   });
 
   @override
@@ -23,7 +26,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registrierung'),
-      ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              await widget.authRepository.logout();
+            },
+            icon: const Icon(Icons.logout),
+                    ),
+                  ));
+            },
+            
+          
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
