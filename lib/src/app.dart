@@ -3,7 +3,7 @@ import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/data/mock_database.dart';
 import 'package:dachdecker_app/src/features/authentification/presentation/loginscreen.dart';
 import 'package:dachdecker_app/src/features/authentification/presentation/signupscreen.dart';
-import 'package:flex_color_scheme/flex_color_scheme.dart';
+
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
   final AuthRepository authRepository;
 
   const App(
-      {Key? key,
+      {super.key,
       required this.databaseRepository,
       required this.authRepository});
 
