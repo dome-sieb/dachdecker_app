@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:85316744814:ios:f8d38f435c8119c014d87f</string>
+	<key>DATABASE_URL</key>
+	<string>https://dachdecker-app-v999kq-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

@@ -16,9 +16,7 @@ class Worker {
   String name;
   String position;
 
-  Worker(
-    String s,
-    String s, {
+  Worker({
     required this.id,
     required this.name,
     required this.position,
