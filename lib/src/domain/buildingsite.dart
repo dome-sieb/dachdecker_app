@@ -9,6 +9,8 @@ class Buildingsite {
   List<Task> task;
   List<String> messages;
 
+  var tasks;
+
   Buildingsite({
     required this.name,
     required this.address,
@@ -16,6 +18,7 @@ class Buildingsite {
     required this.worker,
     required this.task,
     required this.messages,
+    required this.tasks,
   });
 
   Map<String, dynamic> toMap() {
@@ -35,8 +38,9 @@ class Buildingsite {
       address: map["address"],
       owner: map["owner"],
       worker: map["worker"],
-      task: map["task"],
+      tasks: map["task"],
       messages: map["messages"],
+      task: map["task"],
     );
   }
 
@@ -53,8 +57,9 @@ class Buildingsite {
       address: address,
       owner: owner,
       worker: worker,
-      task: task,
+      tasks: task,
       messages: messages,
+      task: task,
     );
   }
 }

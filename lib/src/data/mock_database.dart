@@ -1,7 +1,3 @@
-import 'package:dachdecker_app/src/data/database_repository.dart';
-import 'package:dachdecker_app/src/domain/buildingsite.dart';
-import 'package:dachdecker_app/src/domain/task.dart';
-import 'package:dachdecker_app/src/domain/worker.dart';
 import 'package:flutter/material.dart';
 
 class MockDatabase implements DatabaseRepository {
@@ -10,20 +6,29 @@ class MockDatabase implements DatabaseRepository {
 
   @override
   Future<void> init() async {
-    workers = [Worker('1', 'Dome', 'Dachdecker'), Worker('2', 'Tom', 'Azubi')];
+    workers = [
+      Worker(id: '1', name: 'Dome', position: 'Dachdecker'),
+      Worker(id: '2', name: 'Max', position: 'Azubi'),
+    ];
     buildingsite = Buildingsite(
-      'test',
-      'Fantasiestr. 4 12345 Fantasiestadt',
-      'Herr Besitzer',
-      workers,
-      [
+      siteName:
+          'Karstadt Dresden', // Hinzugefügtes fehlendes positionsabhängiges Argument
+      address: 'Prager Straße 10, 01069 Dresden',
+      worker: [Worker(id: '1', name: 'Dome', position: 'Dachdecker')],
+      task: [
         Task(
-          'Dämmen',
-          'Vorhandene Konstruktion mit Dämmung ausfüllen',
-          workers[0],
+          title: 'Dämmen',
+          description: 'Vorhandene Konstruktion mit Dämmung ausfüllen',
+          worker: workers[0],
+        ),
+        Task(
+          title: 'Decken',
+          description: 'Dachdecken mit Schindeln',
+          worker: workers[0],
         ),
       ],
-      ['Viel Spaß', "Frohes Schaffen!"],
+      owner: 'Karstadt Dresden',
+      messages: ['Viel Spaß', 'Frohes Schaffen!'],
     );
   }
 
@@ -87,5 +92,57 @@ class MockDatabase implements DatabaseRepository {
     show(worker);
   }
 
-  void show(Worker worker) {}
+  void show(Worker worker) {
+    // Implementiere die gewünschte Logik hier
+    print('Showing worker: ${worker.name}');
+  }
+}
+
+// Beispielhafte Klassen für Worker, Task, Buildingsite und DatabaseRepository
+class Worker {
+  final String id;
+  final String name;
+  final String position;
+
+  Worker({required this.id, required this.name, required this.position});
+}
+
+class Task {
+  final String title;
+  final String description;
+  final Worker worker;
+
+  Task({required this.title, required this.description, required this.worker});
+}
+
+class Buildingsite {
+  final String siteName;
+  final String address;
+  final List<Worker> worker;
+  final List<Task> task;
+  final String owner;
+  final List<String> messages;
+
+  Buildingsite({
+    required this.siteName,
+    required this.address,
+    required this.worker,
+    required this.task,
+    required this.owner,
+    required this.messages,
+  });
+}
+
+abstract class DatabaseRepository {
+  Future<void> init();
+  Future<void> addTask(Task task);
+  Future<void> addWorker(Worker worker);
+  Future<List<String>?> getMessages();
+  Future<void> removeTask(Task task);
+  Future<void> removeWorker(Worker worker);
+  Future<void> sendMessages(String message);
+  Future<Buildingsite?> getBuildingsite(Key? key);
+  Future<List<Task>?> getTasks();
+  Future<List<Worker>?> getWorkers();
+  Future<void> showWorker(Worker worker);
 }

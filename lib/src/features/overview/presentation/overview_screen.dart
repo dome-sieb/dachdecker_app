@@ -1,46 +1,68 @@
+import 'package:dachdecker_app/src/data/auth_repository.dart';
 import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/domain/worker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OverviewScreen extends StatelessWidget {
-  final DatabaseRepository databaseRepository;
+  const OverviewScreen({super.key});
 
-  const OverviewScreen({super.key, required this.databaseRepository});
+  @override
+  State<OverviewScreen> createState() => _OverviewScreenState();
+}
+
+class _OverviewScreenState extends State<OverviewScreen> {
+  late Future<List<Worker>?> workers;
+
+  @override
+  void initState() {
+    super.initState();
+    workers = context.read<DatabaseRepository>().getWorkers();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Worker>?>(
-      future: databaseRepository.getWorkers(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (snapshot.hasError) {
-          return const Center(
-            child: Text('Error'),
-          );
-        } else if (snapshot.data!.isEmpty) {
-          return const Center(
-            child: Text('No workers'),
-          );
-        } else {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Worker'),
-              backgroundColor: Colors.red[400],
-            ),
-            body: ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Worker'),
+        backgroundColor: Colors.red[400],
+        actions: [
+          IconButton(
+            
+            onPressed: () async {
+              await context.read<AuthRepository>().logout();
+            },
+            icon: const Icon(Icons.logout),
+          ),
+          
+        ],
+      ),
+      body: FutureBuilder(
+        future: workersFuture,
+        builder: (context, snapshot){
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError){
+            return const Center(
+              child: Text('An error occurred'),
+            );
+          } else {
+            final workers = snapshot.data as List<Worker>;
+            return ListView.builder(
+              itemCount: workers.length,
+              itemBuilder: (context, index){
+                final worker = workers[index];
                 return ListTile(
-                  title: Text(snapshot.data![index].name),
-                  subtitle: Text(snapshot.data![index].position),
+                  title: Text(worker.name),
+                  subtitle: Text(worker.job),
                 );
               },
-            ),
-          );
+            );
+          }
         }
-      },
-    );
-  }
+      ),  
+      
+         
 }

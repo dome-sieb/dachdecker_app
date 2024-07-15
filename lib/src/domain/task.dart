@@ -19,7 +19,7 @@ class Task {
     return Task(
         title: map["title"],
         description: map["description"],
-        worker: map["worker"]);
+        worker: Worker.fromMap(map["worker"]));
   }
 
   factory Task.eigtheen(String title, String description, Worker worker) {
