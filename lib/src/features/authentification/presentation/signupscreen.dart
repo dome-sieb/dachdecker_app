@@ -4,17 +4,10 @@ import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/features/authentification/application/validators.dart';
 import 'package:dachdecker_app/src/features/authentification/presentation/loginscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
-  // Attribute
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
-  // Konstruktor
-  const SignUpScreen(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const SignUpScreen({super.key});
 
   // Methoden
   @override
@@ -60,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const Center(
                     child: Image(
                         width: 300,
-                        image: AssetImage('assets/images/logo_light.png'))),
+                        image: AssetImage('assets/images/background.png'))),
                 const SizedBox(height: 32),
                 TextFormField(
                   controller: _emailController,
@@ -123,8 +116,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () async {
-                    await widget.authRepository.signUpWithEmailAndPassword(
-                        _emailController.text, _pwController.text);
+                    await context
+                        .read<AuthRepository>()
+                        .signUpWithEmailAndPassword(
+                            _emailController.text, _pwController.text);
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
@@ -137,13 +132,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 TextButton(
                   onPressed: () {
                     Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(
-                            databaseRepository: widget.databaseRepository,
-                            authRepository: widget.authRepository,
-                          ),
-                        ));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
                   },
                   child: const Text("Bereits einen Account? Zum Login"),
                 ),

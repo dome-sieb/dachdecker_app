@@ -4,13 +4,13 @@ import 'package:dachdecker_app/src/domain/worker.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class DatabaseRepository {
-  void sendMessages(String message);
+  Future<void> sendMessages(String message);
   Future<List<String>?> getMessages();
-  void addWorker(Worker worker);
-  void removeWorker(Worker worker);
-  void addTask(Task task);
-  void removeTask(Task task);
-  void showWorker(Worker worker);
+  Future<void> addWorker(Worker worker);
+  Future<void> removeWorker(Worker worker);
+  Future<void> addTask(Task task);
+  Future<void> removeTask(Task task);
+  Future<void> showWorker(Worker worker);
   Future<List<Worker>?> getWorkers();
   Future<List<Task>?> getTasks();
   Future<Buildingsite?> getBuildingsite(Key? key);

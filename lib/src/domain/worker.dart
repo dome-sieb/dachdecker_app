@@ -12,9 +12,9 @@ class Worker {
 } */
 
 class Worker {
-  String id;
-  String name;
-  String position;
+  final String id;
+  final String name;
+  final String position;
 
   Worker({
     required this.id,

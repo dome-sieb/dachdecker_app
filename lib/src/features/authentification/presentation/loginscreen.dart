@@ -1,26 +1,20 @@
 import 'package:dachdecker_app/src/data/auth_repository.dart';
-import 'package:dachdecker_app/src/data/database_repository.dart';
 import 'package:dachdecker_app/src/features/authentification/application/validators.dart';
-
+import 'package:dachdecker_app/src/features/authentification/presentation/signupscreen.dart';
 import 'package:flutter/material.dart';
-
-import 'signupscreen.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
+  // Konstruktor
+  const LoginScreen({super.key});
 
-  const LoginScreen({
-    super.key,
-    required this.databaseRepository,
-    required this.authRepository,
-  });
-
+  // Methoden
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // state:
   late TextEditingController _emailController;
   late TextEditingController _pwController;
 
@@ -29,6 +23,13 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     _emailController = TextEditingController();
     _pwController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _pwController.dispose();
+    super.dispose();
   }
 
   bool showPassword = false;
@@ -85,8 +86,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () async {
-                    await widget.authRepository.loginWithEmailAndPassword(
-                        _emailController.text, _pwController.text);
+                    await context
+                        .read<AuthRepository>()
+                        .loginWithEmailAndPassword(
+                            _emailController.text, _pwController.text);
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
@@ -101,10 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SignUpScreen(
-                            databaseRepository: widget.databaseRepository,
-                            authRepository: widget.authRepository,
-                          ),
+                          builder: (context) => const SignUpScreen(),
                         ));
                   },
                   child: const Text("Noch keinen Account? Zur Registrierung"),

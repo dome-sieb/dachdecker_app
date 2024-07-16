@@ -30,9 +30,7 @@ class WelcomeScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => OverviewScreen(
-                              databaseRepository: databaseRepository,
-                            ),
+                            builder: (context) => OverviewScreen(),
                           ),
                         );
                       },
